@@ -70,7 +70,7 @@
 <?php $count = count(get_appearance_header_settings_data());?>
 @if($count > 0) @foreach(get_appearance_header_settings_data() as $img)
 <a href="<?=($img->img_url)?$img->link:'';?>" class="item" >
-<img class="responsive lazy-load-image" src="https://dummyimage.com/600x400/f7eaf7/fff.jpg"  data-src="{{ get_image_url($img->img_url) }}" >
+<img class="responsive lazy-load-image" src="<?=img_loading()?>"  data-src="{{ get_image_url($img->img_url) }}" >
 </a>
 @endforeach @endif @endif
 
@@ -80,22 +80,22 @@
 <div class="row row_ci4f banner-row">
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[0]['url'])? $home_banner[0]['url'] : "" ;?>">
-<img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[0]['image'])? URL::asset($home_banner[0]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[0]['image'])? URL::asset($home_banner[0]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[1]['url'])? $home_banner[1]['url'] : "" ;?>">
-<img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[1]['image'])? URL::asset($home_banner[1]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[1]['image'])? URL::asset($home_banner[1]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[2]['url'])? $home_banner[2]['url'] : "" ;?>">
-<img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" dat-src="<?=($home_banner[2]['image'])? URL::asset($home_banner[2]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image" src="<?=img_loading()?>" dat-src="<?=($home_banner[2]['image'])? URL::asset($home_banner[2]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[3]['url'])? $home_banner[3]['url'] : "" ;?>">
-<img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[3]['image'])? URL::asset($home_banner[3]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[3]['image'])? URL::asset($home_banner[3]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 </div>
@@ -153,7 +153,7 @@
                                         <div class=left-block>
                                         <div class="image product-image-container">
                                         <a class=lt-image href="{{ route('details-page', $latest_product->slug) }}" target=_self>
-                                        <img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="{{ get_image_url( $latest_product->image_url ) }}" alt="$latest_product->image_alt }}">
+                                        <img class="lazy-load-image" src="<?=img_loading()?>" data-src="{{ get_image_url( $latest_product->image_url ) }}" alt="$latest_product->image_alt }}">
                                         </a>
                                         </div>
                                         </div>
@@ -175,12 +175,12 @@
                         </div>
                         <div class="item-1 col-lg-6 col-md-6 col-sm-6 banners">
                         <div>
-                        <a title="Static Image" href="<?=($home_banner[4]['url'])? $home_banner[4]['url'] : "" ;?>"><img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[4]['image'])? URL::asset($home_banner[4]['image']) : "" ;?>" alt="Static Image"></a>
+                        <a title="Static Image" href="<?=($home_banner[4]['url'])? $home_banner[4]['url'] : "" ;?>"><img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[4]['image'])? URL::asset($home_banner[4]['image']) : "" ;?>" alt="Static Image"></a>
                         </div>
                         </div>
                         <div class="item-2 col-lg-6 col-md-6 col-sm-6 banners">
                         <div>
-                        <a title="Static Image" href="<?=($home_banner[5]['url'])? $home_banner[5]['url'] : "" ;?>"><img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[5]['image'])? URL::asset($home_banner[5]['image']) : "" ;?>" alt="Static Image"></a>
+                        <a title="Static Image" href="<?=($home_banner[5]['url'])? $home_banner[5]['url'] : "" ;?>"><img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[5]['image'])? URL::asset($home_banner[5]['image']) : "" ;?>" alt="Static Image"></a>
                         </div>
                         </div>
 
@@ -199,7 +199,7 @@
                                                 <div class=left-block>
                                                 <div class="image product-image-container">
                                                         <a class=lt-image href="{{ route('details-page', $items->slug) }}" target=_self>
-                                                        <img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="{{ get_image_url( $items->image_url ) }}" alt="{{ $items->image_alt }}">
+                                                        <img class="lazy-load-image" src="<?=img_loading()?>" data-src="{{ get_image_url( $items->image_url ) }}" alt="{{ $items->image_alt }}">
                                                         </a>
                                                 </div>
                                                 </div>
@@ -222,12 +222,12 @@
                         @endforeach @endif
                         <div class="item-1 col-lg-6 col-md-6 col-sm-6 banners">
                         <div>
-                        <a title="Static Image" href="<?=($home_banner[6]['url'])? $home_banner[6]['url'] : "" ;?>"><img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[6]['image'])? URL::asset($home_banner[6]['image']) : "" ;?>" alt="Static Image"></a>
+                        <a title="Static Image" href="<?=($home_banner[6]['url'])? $home_banner[6]['url'] : "" ;?>"><img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[6]['image'])? URL::asset($home_banner[6]['image']) : "" ;?>" alt="Static Image"></a>
                         </div>
                         </div>
                         <div class="item-2 col-lg-6 col-md-6 col-sm-6 banners">
                         <div>
-                        <a title="Static Image" href="<?=($home_banner[7]['url'])? $home_banner[7]['url'] : "" ;?>"><img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="<?=($home_banner[7]['image'])? URL::asset($home_banner[7]['image']) : "" ;?>" alt="Static Image"></a>
+                        <a title="Static Image" href="<?=($home_banner[7]['url'])? $home_banner[7]['url'] : "" ;?>"><img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[7]['image'])? URL::asset($home_banner[7]['image']) : "" ;?>" alt="Static Image"></a>
                         </div>
                         </div>
 
@@ -245,7 +245,7 @@
                                                 <div class=left-block>
                                                 <div class="image product-image-container">
                                                 <a class=lt-image href="{{ route('details-page', $latest_product->slug) }}" target=_self>
-                                                <img class="lazy-load-image" src="https://dummyimage.com/500x333/ffffff/ff2f00.jpg&text=247foods" data-src="{{ get_image_url( $latest_product->image_url ) }}" alt="$latest_product->image_alt }}">
+                                                <img class="lazy-load-image" src="<?=img_loading()?>" data-src="{{ get_image_url( $latest_product->image_url ) }}" alt="$latest_product->image_alt }}">
                                                 </a>
                                                 </div>
                                                 </div>

@@ -188,6 +188,12 @@
 	padding: 5px;
 }
 
+.lazy-load-image:not(.img-loaded) {
+	background: url(/image/placeholder.svg) #2353 no-repeat center center;
+	background-size: 80%;
+	min-height: 186px;
+}
+
 @media (max-width: 1200px) {
 	.navbar-toggle {
 		margin: 0;

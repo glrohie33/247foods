@@ -3,7 +3,7 @@
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@if((Request::is('product/details/*') || Request::is('product/customize/*')) && !empty($single_product_details['meta_keywords']))
+{{-- @if((Request::is('product/details/*') || Request::is('product/customize/*')) && !empty($single_product_details['meta_keywords']))
 <meta name="keywords" content="{{ $single_product_details['meta_keywords'] }}">
 
 @elseif( Request::is('blog/*') && !empty($blog_details_by_slug['meta_keywords']))
@@ -38,24 +38,20 @@
 
 @if((Request::is('store/details/home/*') || Request::is('store/details/products/*') || Request::is('store/details/reviews/*') || Request::is('store/details/cat/products/*')) && !empty($store_seo_meta_description))
 <meta name="description" content="{{ $store_seo_meta_description }}">
-@endif
+@endif --}}
 
 
 <link rel="stylesheet" href="{{ URL::asset('public/bootstrap/css/bootstrap.min.css') }}" />
 <link href="{{ URL::asset('public/frontend/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-<link href="{{URL::asset( 'public/frontend/js/datetimepickerbootstrap-datetimepicker.min.css') }}" rel="stylesheet">
-{{-- <link href="{{ URL::asset('public/frontend/js/owl-carousel/owl.carousel.css') }}" rel="stylesheet"> --}}
-<link href="{{ URL::asset('public/frontend/css/themecss/lib.css') }}" rel="stylesheet">
-{{-- <link href="{{ URL::asset('public/frontend/js/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"> --}}
-<link href="{{URL::asset( 'public/frontend/js/minicolors/miniColors.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('public/frontend/js/slick-slider/slick.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('public/sweetalert/sweetalert.css') }}" rel="stylesheet">
+{{-- <link href="{{URL::asset( 'public/frontend/js/datetimepickerbootstrap-datetimepicker.min.css') }}" rel="stylesheet"> --}}
+{{-- <link href="{{ URL::asset('public/frontend/css/themecss/lib.css') }}" rel="stylesheet"> --}}
+{{-- <link href="{{URL::asset( 'public/frontend/js/minicolors/miniColors.css') }}" rel="stylesheet"> --}}
+{{-- <link href="{{ URL::asset('public/frontend/js/slick-slider/slick.css') }}" rel="stylesheet"> --}}
+{{-- <link href="{{ URL::asset('public/sweetalert/sweetalert.css') }}" rel="stylesheet"> --}}
 <!-- Theme CSS
  ============================================ -->
-{{-- <link href="{{URL::asset( 'public/frontend/css/themecss/so_searchpro.css') }}" rel="stylesheet"> --}}
 <link href="{{URL::asset( 'public/frontend/css/themecss/so_megamenu.css') }}" rel="stylesheet">
 <link href="{{URL::asset( 'public/frontend/css/themecss/so-listing-tabs.css') }}" rel="stylesheet">
-{{-- <link href="{{URL::asset( 'public/frontend/css/themecss/so-newletter-popup.css' )}}" rel="stylesheet"> --}}
 
 <link href="{{URL::asset( 'public/frontend/css/themecss/so_onepagecheckout.css' )}}" rel="stylesheet">
 <link href="{{URL::asset( 'public/templates-assets/footer/topdeals/footer2.css') }}" rel="stylesheet">

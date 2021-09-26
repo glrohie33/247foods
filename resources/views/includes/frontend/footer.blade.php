@@ -1,5 +1,5 @@
 <footer id="footer" class="footer-wrapper">
-    <script type="text/javascript" defer>
+    {{-- <script type="text/javascript" defer>
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       (function(){
       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -9,7 +9,7 @@
       s1.setAttribute('crossorigin','*');
       s0.parentNode.insertBefore(s1,s0);
       })();
-      </script>
+      </script> --}}
   @include( 'frontend-templates.footer.topdeals.topdeals' )
   <script type="text/javascript" src="{{ URL::asset('public/frontend/js/jquery-2.2.4.min.js') }}"></script>
   <script>
@@ -180,7 +180,12 @@
         var elePos = ele.getBoundingClientRect().top;
         if( elePos > 0 && elePos < windowHeight){
           if(!!ele.getAttribute('data-src')){
-            ele.src = ele.getAttribute("data-src");
+            var img = new Image();
+            img.src = ele.getAttribute('data-src');
+            img.onload=()=>{
+              ele.src = ele.getAttribute("data-src");
+              ele.classList.add("img-loaded");
+            }
           }
         }
 

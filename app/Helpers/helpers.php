@@ -1378,6 +1378,11 @@ function is_all_tables_created()
   return GetFunction::is_all_tables_created_in_db();
 }
 
+
+function img_loading()
+{
+  return "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+}
 function build_query($name, $value)
 {
   $params = $_SERVER["QUERY_STRING"];
