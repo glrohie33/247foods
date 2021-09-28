@@ -2,35 +2,37 @@
 
 namespace App\Library;
 
-use App\Http\Controllers\OptionController;
-use App\Http\Controllers\CMSController;
-use App\Http\Controllers\ProductsController;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\App;
-use App\Models\Role;
 use Cookie;
 use Session;
-use App\Models\Post;
+use App\Cart\Cart;
+use Carbon\Carbon;
+use App\Models\Role;
+use App\Models\Term;
 use App\Models\PostExtra;
 use App\Models\OrdersItem;
-use App\Models\DownloadExtra;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use App\Models\UsersDetail;
-use App\Cart\Cart;
-use Illuminate\Support\Facades\URL;
+use App\Models\DownloadExtra;
 use Nexmo\Laravel\Facade\Nexmo;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\CustomCurrencyValue;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Lang;
+use App\Http\Controllers\CMSController;
+use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\ProductsController;
 
 class CommonFunction
 {
   public $cart;
   public $catHTML = '';
+  public $option;
 
   public function __construct()
   {
     $this->cart = new Cart();
+    $this->option  =  new OptionController();
   }
 
   public function get_cart_total()
@@ -42,14 +44,14 @@ class CommonFunction
   {
     return $this->cart->getItems();
   }
-    
+
   public function remove_item($item_id)
   {
     if (isset($item_id) && !empty($item_id)) {
       return $this->cart->remove($item_id);
     }
   }
-  
+
   public function get_currency_symbol($currency = '')
   {
     switch ($currency) {
@@ -310,6 +312,20 @@ class CommonFunction
    * @param null
    * @return string
    */
+
+  public function frontendData()
+  {
+    $unserialize_appearance_data  =   $this->option->getAppearanceData();
+    $topCat = json_decode($this->option->getOptionData('_option_top_category')->option_value, true);
+    $vertical_menu = Term::where(['type' => 'product_cat', 'status' => 1])->whereIn('term_id', $topCat)->get()->toArray();
+    $appearance = $unserialize_appearance_data['settings_details'];
+    $data['seo_data'] = get_seo_data();
+    $data['appearance_all_data']          =   $appearance;
+    $data['settings'] =  json_decode($unserialize_appearance_data['settings']);
+    $data['vertical_menu']        =   $vertical_menu;
+    $data['top_cat'] = $topCat;
+    return $data;
+  }
 
   public function frontendMenuHTML($get_cat_tree)
   {

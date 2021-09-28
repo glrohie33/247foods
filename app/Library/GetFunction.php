@@ -1974,7 +1974,6 @@ class GetFunction
 
     $get_settings = json_decode($unserialize_appearance_data['settings']);
     $slider_elements = array();
-    die(var_dump($get_settings));
 
     if (count($get_settings->header_slider_images_and_text->slider_images) > 0) {
       foreach ($get_settings->header_slider_images_and_text->slider_images as $img) {

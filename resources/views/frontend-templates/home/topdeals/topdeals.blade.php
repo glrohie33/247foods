@@ -161,16 +161,17 @@
                         </div>
                         </div>
 
-                        @if(!empty($appearance_all_data['home_details']['cat_name_and_products']) && count($appearance_all_data['home_details']['cat_name_and_products']) > 0) @foreach($appearance_all_data['home_details']['cat_name_and_products'] as $cat_details)
+                        @foreach($homePageCategories as $cat_details)
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 module so-listing-tabs-ltr default-nav clearfix img-float label-1 home-lt1">
                                         <div class="head-title font-ct">
-                                                <h2 class=modtitle>{!! $cat_details['cat_deails']['name'] !!}</h2>
+                                                <h2 class=modtitle>{!! $cat_details['name'] !!}</h2>
                                                 <div class="view-more">
-                                                        <a class="label" href="{{ route('categories-page', $cat_details['cat_deails']['slug']) }}">see more</a>
+                                                        <a class="label" href="{{ route('categories-page', $cat_details['slug']) }}">see more</a>
                                                 </div>
                                         </div>
                                         <div class="product-list">
-                                                @if($cat_details['cat_products']->count() > 0) @foreach($cat_details['cat_products'] as $items)
+                                                <?php $products = array_filter($catProducts,function($arr) use($cat_details){return $arr->term_id == $cat_details['term_id'];}); ?>
+                                                 @foreach($products as $items)
                                                 <div class="item-inner product-layout transition product-grid col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                                 <div class=product-item-container>
                                                 <div class=left-block>
@@ -193,10 +194,10 @@
                                                 </div>
                                                 </div>
                                                 </div>
-                                                @endforeach @endif
+                                                @endforeach
                                         </div>
                                 </div>
-                        @endforeach @endif
+                        @endforeach
                         <div class="item-1 col-lg-6 col-md-6 col-sm-6 banners">
                         <div>
                         <a title="Static Image" href="<?=($home_banner[6]['url'])? $home_banner[6]['url'] : "" ;?>"><img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[6]['image'])? URL::asset($home_banner[6]['image']) : "" ;?>" alt="Static Image"></a>

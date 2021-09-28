@@ -1360,7 +1360,7 @@ Route::get('/product/customize/{details_id}', [
   'as'   => 'customize-page'
 ]);
 
-Route::get('/product/categories/{cat_slug}', [
+Route::get('/product/categories/{cat_slug}', [ 
   'uses' => 'Frontend\FrontendManagerController@productCategoriesSinglePageContent',
   'as'   => 'categories-page'
 ]);

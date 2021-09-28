@@ -17,6 +17,7 @@ use App\Models\DeliveryArea;
 use App\Models\DownloadExtra;
 use App\Library\CommonFunction;
 use App\Models\SaveCustomDesign;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
@@ -59,21 +60,16 @@ class FrontendManagerController extends Controller
    */
   public function homePageContent()
   {
-    $data = array();
-
-    // $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
-    $unserialize_appearance_data  =   $this->option->getAppearanceData();
-    $topCat = json_decode($this->option->getOptionData('_option_top_category')->option_value, true);
-    $vertical_menu = Term::where(['type' => 'product_cat', 'status' => 1])->whereIn('term_id', $topCat)->get()->toArray();
-    $appearance = $unserialize_appearance_data['settings_details'];
-    $data['seo_data'] = get_seo_data();
-    // $data['appearance_settings']          =   $unserialize_appearance_data;
-    $data['appearance_all_data']          =   $appearance;
-    $data['slider_images'] =  json_decode($unserialize_appearance_data['settings'])->header_slider_images_and_text->slider_images;
-    $data['vertical_menu']        =   $vertical_menu;
-    $data['top_cat'] = $topCat;
+    $data = $this->classCommonFunction->frontendData();
+    $data['slider_images'] =  $data['settings']->header_slider_images_and_text->slider_images;
     $data['advancedData']        =   $this->product->getAdvancedProducts();
     $data['selected_currency']   =   "NGN";
+    $cat_to_display = $data['appearance_all_data']['home_details']['cat_list_to_display'];
+    $data['homePageCategories'] = Term::where(['status' => 1, 'type' => 'product_cat'])->whereIn('term_id', $cat_to_display)->get()->toArray();
+    $data['catProducts'] = DB::table('products')
+      ->where(['products.status' => 1])
+      ->whereIn('object_relationships.term_id', $cat_to_display)
+      ->join('object_relationships', 'object_relationships.object_id', '=', 'products.id')->get()->toArray();
     $data['home_banner'] = unserialize(Option::where('option_name', "_home_banner")->get()->first()->option_value);
     return view('pages.frontend.frontend-pages.home', $data);
   }
@@ -117,7 +113,7 @@ class FrontendManagerController extends Controller
     $get_cat_product_and_breadcrumb  =  $this->product->getProductByCatSlug($params, array('sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes));
 
     if (count($get_cat_product_and_breadcrumb) > 0) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['product_by_cat_id']  =   $get_cat_product_and_breadcrumb;
       $data['brands_data']        =   $this->product->getTermData('product_brands', false, null, 1);
       $data['colors_list_data']   =   $this->product->getTermData('product_colors', false, null, 1);

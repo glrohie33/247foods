@@ -61,20 +61,28 @@
   <script>
 
   var verticalMenu = document.querySelectorAll('.item-vertical');
+  var  catItems = document.querySelectorAll(".cat-items");
   var verticalChildren = <?=json_encode(getTopCatChildren($top_cat))?>;
-  function setChild(itm,children){
+  function setChild(children){
     var childrenHtml = "<div class=menu><ul>";
     children.forEach(itm=>{
       childrenHtml+=`<li><a href="/product/categories/${itm.slug}" class="main-menu">${itm.name}</a></li>`;
     });
-    itm.querySelector(".sub-menu .content").innerHTML= `${childrenHtml} </ul></div>`;
+    return `${childrenHtml} </ul></div>`;
   }
 
   function setMenu(){
     verticalMenu.forEach(itm => {
       id = itm.getAttribute('data-id');
-      setChild(itm,verticalChildren.filter(chd=>chd.parent == id)); 
+      var children = setChild(verticalChildren.filter(chd=>chd.parent == id)); 
+      itm.querySelector(".sub-menu .content").innerHTML= children;
     });
+    catItems.forEach(itm => {
+      id = itm.getAttribute('data-id');
+      var children = setChild(verticalChildren.filter(chd=>chd.parent == id)); 
+      itm.querySelector(".panel-body").innerHTML= children;
+    });
+    
   }
 
   function search(value,mobile=false){
