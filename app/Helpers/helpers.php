@@ -490,6 +490,12 @@ function get_appearance_header_settings_data()
   return GetFunction::appearance_header_settings_data();
 }
 
+function getTopCatChildren($topCat)
+{
+
+  return GetFunction::getTopCatChildren($topCat);
+}
+
 /**
  * Get available languages data
  *

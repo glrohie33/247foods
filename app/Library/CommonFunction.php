@@ -327,7 +327,6 @@ class CommonFunction
       foreach ($get_menu as $menu) {
         $name = '';
         $route = '';
-
         $label1 = explode('|', $menu->label);
         $label2 = explode('##', $label1[1]);
 

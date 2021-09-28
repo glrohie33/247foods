@@ -563,7 +563,7 @@ class ProductsController extends Controller
     if (is_array($get_categories) && count($get_categories) > 0) {
       $categories = $this->buildTree(json_decode(json_encode($get_categories), true), 0);
     }
-
+ 
     return $categories;
   }
 

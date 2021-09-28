@@ -7,7 +7,7 @@
 
 <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
   @include('includes.csrf-token')
-  
+   
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">{!! trans('admin.add_new_product') !!} &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default btn-sm" href="{{ route('admin.product_list', 'all') }}">{!! trans('admin.products_list') !!}</a></h3>

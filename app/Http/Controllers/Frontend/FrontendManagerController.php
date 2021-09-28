@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use Request;
-use Illuminate\Support\Facades\Input;
-use App\Library\GetFunction;
-use App\Models\Post;
-use App\Models\PostExtra;
-use App\Models\Product;
-use App\Cart\Cart;
-use App\Models\DownloadExtra;
-use App\Models\User;
-use App\Models\DeliveryArea;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Lang;
 use Cookie;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
-use App\Http\Controllers\ProductsController;
-use App\Library\CommonFunction;
-use App\Http\Controllers\CMSController;
-use App\Http\Controllers\OptionController;
-use App\Models\OrdersItem;
-use App\Http\Controllers\VendorsController;
-use App\Models\SaveCustomDesign;
+use Request;
+use App\Cart\Cart;
+use App\Models\Post;
+use App\Models\Term;
+use App\Models\User;
 use App\Models\Option;
+use App\Models\Product;
+use App\Models\PostExtra;
+use App\Models\OrdersItem;
+use App\Library\GetFunction;
+use App\Models\DeliveryArea;
+use App\Models\DownloadExtra;
+use App\Library\CommonFunction;
+use App\Models\SaveCustomDesign;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\CMSController;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\VendorsController;
+use App\Http\Controllers\ProductsController;
 
 class FrontendManagerController extends Controller
 {
@@ -60,7 +61,17 @@ class FrontendManagerController extends Controller
   {
     $data = array();
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    // $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $unserialize_appearance_data  =   $this->option->getAppearanceData();
+    $topCat = json_decode($this->option->getOptionData('_option_top_category')->option_value, true);
+    $vertical_menu = Term::where(['type' => 'product_cat', 'status' => 1])->whereIn('term_id', $topCat)->get()->toArray();
+    $appearance = $unserialize_appearance_data['settings_details'];
+    $data['seo_data'] = get_seo_data();
+    // $data['appearance_settings']          =   $unserialize_appearance_data;
+    $data['appearance_all_data']          =   $appearance;
+    $data['slider_images'] =  json_decode($unserialize_appearance_data['settings'])->header_slider_images_and_text->slider_images;
+    $data['vertical_menu']        =   $vertical_menu;
+    $data['top_cat'] = $topCat;
     $data['advancedData']        =   $this->product->getAdvancedProducts();
     $data['selected_currency']   =   "NGN";
     $data['home_banner'] = unserialize(Option::where('option_name', "_home_banner")->get()->first()->option_value);
@@ -398,7 +409,7 @@ class FrontendManagerController extends Controller
     }
 
     if (isset($_GET['selected_sizes'])) {
-      $selected_sizes = $_GET['selected_sizes']; 
+      $selected_sizes = $_GET['selected_sizes'];
     }
 
     $get_product  =  $this->product->getFilterProductsDataWithPagination(array('srch_term' => $search_term, 'sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes, 'type' => $type));
@@ -604,7 +615,7 @@ class FrontendManagerController extends Controller
    * @param null
    * @return void 
    */
-  public function checkoutPageContent() 
+  public function checkoutPageContent()
   {
     $data = array();
     $vendor_details  = array();

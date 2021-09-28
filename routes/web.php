@@ -381,6 +381,18 @@ Route::group(['prefix' => 'admin'], function () {
     'as'   => 'admin.menu_layout_settings_content'
   ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
 
+  Route::post('settings/category', [
+    'uses' => 'SettingsController@TopCatSaveContent',
+    'as'   => 'admin.menu_layout_settings_save_category'
+  ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+
+  Route::get('settings/category', [
+    'uses' => 'SettingsController@settingsTopCatContent',
+    'as'   => 'admin.menu_layout_settings_category'
+  ])->middleware('verifyLoginPage', 'admin', 'sufficientPermission');
+
+
   Route::get('settings/emails', [
     'uses' => 'SettingsController@settingsEmailContent',
     'as'   => 'admin.emails_settings_content'
@@ -751,7 +763,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('product/add', [
     'uses' => 'ProductsController@saveProduct',
     'as'   => 'admin.save_product'
-  ]); 
+  ]);
 
   Route::post('product/update/{slug}', [
     'uses' => 'ProductsController@saveProduct',
@@ -1336,7 +1348,7 @@ Route::get('/', [
 Route::get('/shop/{type?}', [
   'uses' => 'Frontend\FrontendManagerController@productsPageContent',
   'as'   => 'shop-page'
-]); 
+]);
 
 Route::get('/product/details/{details_slug}', [
   'uses' => 'Frontend\FrontendManagerController@productSinglePageContent',

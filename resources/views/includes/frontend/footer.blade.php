@@ -60,40 +60,21 @@
   </script>
   <script>
 
-  var verticalMenu = <?=json_encode($vertical_menu)?>;
-
-  function setChild(children){
-    var childrenHtml = "";
+  var verticalMenu = document.querySelectorAll('.item-vertical');
+  var verticalChildren = <?=json_encode(getTopCatChildren($top_cat))?>;
+  function setChild(itm,children){
+    var childrenHtml = "<div class=menu><ul>";
     children.forEach(itm=>{
-      childrenHtml+=`<li>
-                        <a href="/product/categories/${itm.slug}" class="main-menu">${itm.name}</a>
-                      </li>`;
+      childrenHtml+=`<li><a href="/product/categories/${itm.slug}" class="main-menu">${itm.name}</a></li>`;
     });
-    return childrenHtml;
+    itm.querySelector(".sub-menu .content").innerHTML= `${childrenHtml} </ul></div>`;
   }
 
   function setMenu(){
-    var menuhtml ="";
-                    verticalMenu.forEach(itm => {
-                      menuhtml+= `<li class="item-vertical css-menu with-sub-menu hover">
-                        <p class="close-menu"></p>
-                        <a class="clearfix" href="/products/categories/${itm.slug}">
-                            <span>
-                                <strong>${itm.name}</strong>
-                            </span>
-                        </a>
-                        <div class="sub-menu" style="width: 250px;">
-                            <div class="col-sm-12 hover-menu">
-                                <div class="menu">
-                                    <ul>
-                                        ${setChild(itm.children)}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>`;
-                    });
-      return menuhtml;
+    verticalMenu.forEach(itm => {
+      id = itm.getAttribute('data-id');
+      setChild(itm,verticalChildren.filter(chd=>chd.parent == id)); 
+    });
   }
 
   function search(value,mobile=false){
@@ -129,10 +110,6 @@
             $("#searchResult").hide();
             $("#mobileSearchResult").hide();
         });
-
-      var menu = `<ul class="megamenu" data-transition="slide" data-animationtime="300">
-                    ${setMenu()}
-                </ul>`;
 
       var nav = $(".slider").append(`<div class="prev nav" ><i class="fa fa-chevron-left" onclick="changeSlider('prev')"></i></div> <div class="next nav"><i class="fa fa-chevron-right" onclick="changeSlider('next')"></i></div>`);
 
@@ -198,7 +175,7 @@
           loadImage(ele);
         });
       }
-
+      setMenu()
       loadImages();
       window.onscroll = ()=>{
         loadImages();

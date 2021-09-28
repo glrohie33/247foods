@@ -14,8 +14,8 @@
 <div class=megamenu-pattern>
 <div class=container>
 <ul class=megamenu data-transition=slide data-animationtime=300>
-@if(is_array($vertical_menu) && count($vertical_menu)>0) @foreach($vertical_menu as $menu)
-<li class="item-vertical css-menu with-sub-menu hover">
+@foreach($vertical_menu as $menu)
+<li class="item-vertical css-menu with-sub-menu hover" data-id="<?=$menu['term_id']?>">
 <p class=close-menu></p>
 <a href="{{ route('categories-page', $menu['slug']) }}" class=clearfix>
 <span>
@@ -24,34 +24,13 @@
 </strong>
 </span>
 </a>
-@if(is_array($menu['children']) && count($menu['children']) > 0 )
 <div class=sub-menu style=width:250px>
 <div class=content>
-<div class=row>
-<div class=col-sm-12>
-<div class=categories>
-<div class=row>
-<div class="col-sm-12 hover-menu">
-<div class=menu>
-<ul>
-@foreach($menu['children'] as $child)
-<li>
-<a href="{{ route('categories-page', $child['slug']) }}" class=main-menu>{{ $child['name'] }}
-</a>
+                
+</div>
+</div>
 </li>
 @endforeach
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-@endif
-</li>
-@endforeach @endif
 <li class=loadmore><i class="fa fa-plus-square"></i><span class=more-view> More Categories</span></li>
 </ul>
 </div>
@@ -67,12 +46,11 @@
 
 <div class="col-lg-7 col-md-9 col-sm-12 col-xs-12 col_anla slider-right home-slider  slider" data-time="3000">
 @if($appearance_all_data['header_details']['slider_visibility'] == true && Request::is('/'))
-<?php $count = count(get_appearance_header_settings_data());?>
-@if($count > 0) @foreach(get_appearance_header_settings_data() as $img)
-<a href="<?=($img->img_url)?$img->link:'';?>" class="item" >
-<img class="responsive lazy-load-image" src="<?=img_loading()?>"  data-src="{{ get_image_url($img->img_url) }}" >
+@foreach($slider_images as $img)
+<a href="<?=($img->link)?$img->link:'';?>" class="item" >
+<img class="responsive lazy-load-image" src="<?=img_loading()?>"  data-src="{{ get_image_url($img->url) }}" >
 </a>
-@endforeach @endif @endif
+@endforeach @endif
 
 </div>
 
@@ -100,7 +78,6 @@
 </div>
 </div>
 </div>
-
 </div>
 </div>
 <div class="container page-builder-ltr products"> 
