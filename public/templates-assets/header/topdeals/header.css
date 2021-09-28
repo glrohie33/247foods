@@ -191,7 +191,12 @@
 .lazy-load-image:not(.img-loaded) {
 	background: url(/image/placeholder.svg) #2353 no-repeat center center;
 	background-size: 80%;
-	min-height: 186px;
+	height: 186px;
+	width: 100%;
+}
+
+.banners .lazy-load-image:not(.img-loaded) {
+	height: 220px;
 }
 
 @media (max-width: 1200px) {
@@ -230,5 +235,15 @@
 
 	.navbar-toggle .icon-bar:nth-child(1) {
 		width: 13px;
+	}
+
+	.home-slider .item img {
+		height: 200px;
+		width: 100%;
+	}
+
+	.home-slider {
+		position: relative;
+		height: 205px;
 	}
 }

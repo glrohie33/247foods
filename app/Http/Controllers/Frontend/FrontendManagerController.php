@@ -67,9 +67,11 @@ class FrontendManagerController extends Controller
     $cat_to_display = $data['appearance_all_data']['home_details']['cat_list_to_display'];
     $data['homePageCategories'] = Term::where(['status' => 1, 'type' => 'product_cat'])->whereIn('term_id', $cat_to_display)->get()->toArray();
     $data['catProducts'] = DB::table('products')
-      ->where(['products.status' => 1])
+      ->where(['products.status' => 1, 'product_extras.key_name' => '_product_enable_as_selected_cat', 'product_extras.key_value' => 'yes'])
       ->whereIn('object_relationships.term_id', $cat_to_display)
-      ->join('object_relationships', 'object_relationships.object_id', '=', 'products.id')->get()->toArray();
+      ->join('object_relationships', 'object_relationships.object_id', '=', 'products.id')
+      ->join('product_extras', 'product_extras.product_id', 'products.id')
+      ->get()->toArray();
     $data['home_banner'] = unserialize(Option::where('option_name', "_home_banner")->get()->first()->option_value);
     return view('pages.frontend.frontend-pages.home', $data);
   }
