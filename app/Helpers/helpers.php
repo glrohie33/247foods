@@ -17,7 +17,7 @@ function get_product_title($product_id = '')
  * Get function for product slug
  *
  * @param product id
- * @return string 
+ * @return string  
  */
 function get_product_slug($product_id = '')
 {

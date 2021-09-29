@@ -13,8 +13,7 @@
 	<div class="container product-detail">
 	   <div class="row">
 		
-	<div id="content" class="col-md-12 col-sm-12 col-xs-12">
-  			<a href="javascript:void(0)" class="open-sidebar hidden-lg hidden-md"><i class="fa fa-bars"></i>Sidebar</a>
+	<div id="content" class="col-md-9 col-sm-8 col-xs-12">
   			<div class="sidebar-overlay "></div>
   			<div class="product-view product-detail">
   				<div class="product-view-inner clearfix">
@@ -185,6 +184,13 @@
   						</div>
   					</div>
   				</div>
-  			</div>
+			  </div>
+			  <aside class="col-md-3 col-sm-4 col-xs-12 content-aside left_column sidebar-offcanvas" style="margin-top:15px;">
+                <span id="close-sidebar" class="fa fa-times"></span>
+                <div class="module">
+                        @include('includes.frontend.categories-page')
+                        @yield('categories-page-content')
+                </div> 
+			</aside>
 		</div>
 	</div>

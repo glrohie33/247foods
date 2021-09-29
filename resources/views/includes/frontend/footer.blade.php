@@ -1,5 +1,5 @@
 <footer id="footer" class="footer-wrapper">
-    {{-- <script type="text/javascript" defer>
+    <script type="text/javascript" defer>
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       (function(){
       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -9,7 +9,7 @@
       s1.setAttribute('crossorigin','*');
       s0.parentNode.insertBefore(s1,s0);
       })();
-      </script> --}}
+      </script>
   @include( 'frontend-templates.footer.topdeals.topdeals' )
   <script type="text/javascript" src="{{ URL::asset('public/frontend/js/jquery-2.2.4.min.js') }}"></script>
   <script>
@@ -29,18 +29,18 @@
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/addtocart.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/slick-slider/slick.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/libs.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('public/frontend/js/jquery-ui/jquery-ui.min.js') }}"></script>
+        {{-- <script type="text/javascript" src="{{ URL::asset('public/frontend/js/jquery-ui/jquery-ui.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/modernizr/modernizr-2.6.2.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/minicolors/jquery.miniColors.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/jquery.nav.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('public/frontend/js/quickview/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('public/frontend/js/quickview/jquery.magnific-popup.min.js') }}"></script> --}}
         <!-- Theme files
        ============================================ -->
-        <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/application.js') }}"></script>
+        {{-- <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/application.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/sweetalert/sweetalert.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/homepage.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/custom_h2.js') }}"></script>
-        <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/custom_h1.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('public/frontend/js/themejs/custom_h1.js') }}"></script> --}}
   <script>
       // Catch errors since some browsers throw when using the new `type` option.
 // https://bugs.webkit.org/show_bug.cgi?id=209216
@@ -62,7 +62,48 @@
 
   var verticalMenu = document.querySelectorAll('.item-vertical');
   var  catItems = document.querySelectorAll(".cat-items");
+  var catList = document.querySelectorAll("cat-list");
   var verticalChildren = <?=json_encode(getTopCatChildren($top_cat))?>;
+  var catProducts = <?=isset($catProducts)?json_encode($catProducts):json_encode('[]');?>;
+  var currency = `<?=isset($catProducts)?get_currency_symbol_by_code($selected_currency):''?>`;
+  var detailsPage = `<?=route('details-page', "")?>`;
+  function showProducts(ele,prod){
+    var html= "";
+    prod.forEach(p=>{
+      var salePrice =(!!p.salePrice)? `<span class=price-old>${currency+p.regular_price}</span>`:'';
+      html+=`<div class="item-inner product-layout transition product-grid col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                                <div class=product-item-container>
+                                                <div class=left-block>
+                                                <div class="image product-image-container">
+                                                        <a class=lt-image href="${detailsPage+'/'+p.slug}" target=_self>
+                                                        <img class="lazy-load-image" src="${p.image_url}" data-src="${p.image_url}" alt="${p.image_alt}">
+                                                        </a>
+                                                </div>
+                                                </div>
+                                                <div class=right-block>
+                                                <h4 class="title"><a href="${detailsPage+'/'+p.slug}" target=_self>${p.title}</a></h4>
+                                                <div class="total-price clearfix">
+                                                <div class="price price-left">
+                                                <span class=price-new>${currency+p.price}</span>
+                                                ${salePrice}
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>`;
+    });
+    ele.innerHTML = html;
+  }
+
+  function setCatProducts(){
+    catList.forEach(ele=>{
+      var prods = catProducts.filter(prod=>prod.term_id == ele.getAttribute('data-id'));
+      console.log(prods);
+      showProducts(ele,prods);
+    });
+  }
+
+  setCatProducts();
   function setChild(children){
     var childrenHtml = "<div class=menu><ul>";
     children.forEach(itm=>{
@@ -112,7 +153,7 @@
 				error: function () { }
               });
             search.show();
-        }
+    }
 
         $("body").on('click',function(){
             $("#searchResult").hide();
@@ -188,5 +229,26 @@
       window.onscroll = ()=>{
         loadImages();
       }
+
+      $(document).ready(function() {
+    $("#show-verticalmenu").click(function(a) {
+        a.preventDefault(),
+        $(".sidebar-overlay").toggleClass("show"),
+        $(".sidebar-offcanvas").toggleClass("active")
+    }),
+    $(".sidebar-overlay").click(function(a) {
+        a.preventDefault(),
+        $(".sidebar-overlay").toggleClass("show"),
+        $(".sidebar-offcanvas").toggleClass("active")
+    }),
+    $("#close-sidebar").click(function() {
+        $(".sidebar-overlay").removeClass("show"),
+        $(".sidebar-offcanvas").removeClass("active")
+    })
+})
   </script>
+
+
+
+
 </footer>

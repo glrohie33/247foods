@@ -48,7 +48,7 @@
                                                     <use xlink:href="{{ asset("image/icon/homepage.svg#Capa_1") }}">
                                                     </use>
                                                 </svg>
-                                                    <h2 class="title hidden-md hidden-sm">Home</h2>
+                                                    <h2 class="title hidden-md hidden-sm hidden-xs">Home</h2>
                                         </a>
                                 </div>
 
@@ -89,7 +89,7 @@
                                         <use xlink:href="{{ asset("image/icon/phone.svg#Capa_1") }}">
                                         </use>
                                     </svg>
-                                        <h2 class="title-cart2 hidden-md hidden-sm title">phone order</h2>
+                                        <h2 class="title-cart2 hidden-md hidden-sm  hidden-xs title">phone order</h2>
                                     
                             </a>
                             <ul class="dropdown-menu pull-right shoppingcart-box">
@@ -105,7 +105,7 @@
 
                                             </use>
                                         </svg>
-                                        <h2 class="title-cart2 hidden-md hidden-sm title">Login</h2>
+                                        <h2 class="title-cart2 hidden-md hidden-sm hidden-xs title">Login</h2>
                                 </a>
 
                                 <ul class="dropdown-menu pull-right shoppingcart-box">
@@ -134,7 +134,7 @@
                                             </use>
                                         </svg>
                                         <div class="cart-info">
-                                            <h2 class="title-cart2 hidden-md hidden-sm">Cart</h2>
+                                            <h2 class="title-cart2 hidden-md hidden-sm hidden-xs">Cart</h2>
                                             
                                             <span class="total-shopping-cart cart-total-full">
                                                 <span class="items_cart">0 </span>

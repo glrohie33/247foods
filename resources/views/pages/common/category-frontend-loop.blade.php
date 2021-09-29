@@ -3,15 +3,15 @@
     <h4 class="panel-title">
       <a data-toggle="collapse" data-parent="#accordian" href="#{{ str_replace(' ', '-', $menu['slug']) }}">
         <span class="pull-right">
-          <i class="fa <?=(in_array($menu['term_id'], $product_by_cat_id['selected_cat']) || $menu['term_id'] == $product_by_cat_id['parent_id'])?'fa-minus':'fa-plus';?>"></i>
+          <i class="fa <?=(isset($product_by_cat_id) && (in_array($menu['term_id'], $product_by_cat_id['selected_cat']) || $menu['term_id'] == $product_by_cat_id['parent_id']))?'fa-minus':'fa-plus';?>"></i>
         </span>
         <i class="fa fa-angle-double-right"></i> &nbsp; 
-        <span class="<?=in_array($menu['term_id'], $product_by_cat_id['selected_cat'])?'active':'';?>">{!! $menu['name'] !!}</span>
+        <span class="<?=isset($product_by_cat_id) &&in_array($menu['term_id'], $product_by_cat_id['selected_cat'])?'active':'';?>">{!! $menu['name'] !!}</span>
       </a>
     </h4>
   </div>
  <?php 
-  $show = (in_array($menu['term_id'], $product_by_cat_id['selected_cat']) || $menu['term_id'] == $product_by_cat_id['parent_id']) ? 'show':'';
+  $show = (isset($product_by_cat_id) && (in_array($menu['term_id'], $product_by_cat_id['selected_cat']) || $menu['term_id'] == $product_by_cat_id['parent_id'])) ? 'show':'';
  ?>
  <div id="{{ str_replace(' ', '-', $menu['slug']) }}" class="cat-items panel-collapse collapse <?=$show?>" data-id="<?=$menu['term_id']?>">
     <div class="panel-body">

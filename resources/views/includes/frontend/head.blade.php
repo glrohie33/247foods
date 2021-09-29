@@ -44,7 +44,7 @@
 <link rel="stylesheet" href="{{ URL::asset('public/bootstrap/css/bootstrap.min.css') }}" />
 <link href="{{ URL::asset('public/frontend/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 {{-- <link href="{{URL::asset( 'public/frontend/js/datetimepickerbootstrap-datetimepicker.min.css') }}" rel="stylesheet"> --}}
-{{-- <link href="{{ URL::asset('public/frontend/css/themecss/lib.css') }}" rel="stylesheet"> --}}
+<link href="{{ URL::asset('public/frontend/css/themecss/lib.css') }}" rel="stylesheet">
 {{-- <link href="{{URL::asset( 'public/frontend/js/minicolors/miniColors.css') }}" rel="stylesheet"> --}}
 {{-- <link href="{{ URL::asset('public/frontend/js/slick-slider/slick.css') }}" rel="stylesheet"> --}}
 {{-- <link href="{{ URL::asset('public/sweetalert/sweetalert.css') }}" rel="stylesheet"> --}}

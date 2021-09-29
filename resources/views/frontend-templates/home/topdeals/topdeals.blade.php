@@ -169,32 +169,8 @@
                                                         <a class="label" href="{{ route('categories-page', $cat_details['slug']) }}">see more</a>
                                                 </div>
                                         </div>
-                                        <div class="product-list">
-                                                <?php $products = array_filter($catProducts,function($arr) use($cat_details){return $arr->term_id == $cat_details['term_id'];}); ?>
-                                                 @foreach($products as $items)
-                                                <div class="item-inner product-layout transition product-grid col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                                <div class=product-item-container>
-                                                <div class=left-block>
-                                                <div class="image product-image-container">
-                                                        <a class=lt-image href="{{ route('details-page', $items->slug) }}" target=_self>
-                                                        <img class="lazy-load-image" src="<?=img_loading()?>" data-src="{{ get_image_url( $items->image_url ) }}" alt="{{ $items->image_alt }}">
-                                                        </a>
-                                                </div>
-                                                </div>
-                                                <div class=right-block>
-                                                <h4 class="title"><a href="{{ route('details-page', $items->slug) }}" target=_self>{!! $items->title !!}</a></h4>
-                                                <div class="total-price clearfix">
-                                                <div class="price price-left">
-                                                <span class=price-new>{!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($items->id, $items->price)), $selected_currency) !!}</span>
-                                                @if($items->sale_price > 0 && $items->sale_price != '')
-                                                <span class=price-old>{!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($items->id, $items->regular_price)), $selected_currency) !!}</span>
-                                                @endif
-                                                </div>
-                                                </div>
-                                                </div>
-                                                </div>
-                                                </div>
-                                                @endforeach
+                                        <div class="product-list cat-list" data-id="<?=$cat_details['term_id']?>">
+                                                
                                         </div>
                                 </div>
                         @endforeach

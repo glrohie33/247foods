@@ -195,7 +195,7 @@ class FrontendManagerController extends Controller
   //   $get_cat_product_and_breadcrumb  =  $this->product->getProductByCatSlug($params, array('sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes));
 
   //   if (count($get_cat_product_and_breadcrumb) > 0) {
-  //     $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+  //     $data = $this->classCommonFunction->frontendData();
   //     $data['product_by_cat_id']  =   $get_cat_product_and_breadcrumb;
   //     $data['brands_data']        =   $this->product->getTermData('product_brands', false, null, 1);
   //     $data['colors_list_data']   =   $this->product->getTermData('product_colors', false, null, 1);
@@ -253,7 +253,7 @@ class FrontendManagerController extends Controller
 
     $get_testimonial = get_testimonial_data_by_slug($params);
     if (count($get_testimonial) > 0 && isset($get_testimonial['post_status']) && $get_testimonial['post_status'] == 1) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['testimonials_data_by_slug'] =  $get_testimonial;
       $get_testimonials_data  =   get_all_testimonial_data(1);
 
@@ -296,7 +296,7 @@ class FrontendManagerController extends Controller
         $object_id = $get_blog_details_by_slug['id'];
       }
 
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['advanced_data']            =   $this->CMS->get_blog_advanced_data($object_id);
       $data['blog_details_by_slug']     =   $get_blog_details_by_slug;
       $data['comments_details']         =   get_comments_data_by_object_id($object_id, 'blog');
@@ -357,7 +357,7 @@ class FrontendManagerController extends Controller
     $get_brand_details_by_slug = $this->product->getBrandDataBySlug($params);
 
     if (count($get_brand_details_by_slug) > 0) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['brand_details_by_slug'] = $get_brand_details_by_slug;
 
       return view('pages.frontend.frontend-pages.top-brand-single', $data);
@@ -413,7 +413,7 @@ class FrontendManagerController extends Controller
     $get_product  =  $this->product->getFilterProductsDataWithPagination(array('srch_term' => $search_term, 'sort' => $sort, 'price_min' => $price_min, 'price_max' => $price_max, 'selected_colors' => $selected_colors, 'selected_sizes' => $selected_sizes, 'type' => $type));
 
     if (count($get_product) > 0) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['brands_data']          =   $this->product->getTermData('product_brands', false, null, 1);
       $data['advancedData']         =   $this->product->getAdvancedProducts();
       $data['colors_list_data']     =   $this->product->getTermData('product_colors', false, null, 1);
@@ -477,7 +477,7 @@ class FrontendManagerController extends Controller
       $product_id  = $get_product->id;
       $get_current_user_data  =  get_current_frontend_user_info();
 
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['single_product_details']  =  $this->product->getProductDataById($product_id);
 
       if (is_frontend_user_logged_in() && isset($get_current_user_data['user_role_slug']) && $data['single_product_details']['_is_role_based_pricing_enable'] == 'yes') {
@@ -621,7 +621,7 @@ class FrontendManagerController extends Controller
     $get_user_login_data = get_current_frontend_user_info();
     $user_account_parse_data = null;
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
 
     if ($this->cart->getItems()->count() > 0) {
       foreach ($this->cart->getItems() as $item) {
@@ -696,7 +696,7 @@ class FrontendManagerController extends Controller
       }
     }
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     if (!empty($vendor_details)) {
       $data['shipping_data'] = $this->classCommonFunction->objToArray($vendor_details->shipping_method, true);
     } else {
@@ -750,7 +750,7 @@ class FrontendManagerController extends Controller
   {
     $data = array();
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['blogs_all_data']  =   get_all_blogs_data(1);
     $data['categoriesTree']  =   $this->product->get_categories(0, 'blog_cat');
     $data['advanced_data']   =   $this->CMS->get_blog_advanced_data();
@@ -772,7 +772,7 @@ class FrontendManagerController extends Controller
     $get_cat_post  =   $this->CMS->getBlogPostByCatSlug($params);
 
     if (count($get_cat_post) > 0) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['blogs_cat_post']  =   $get_cat_post;
       $data['advanced_data']   =   $this->CMS->get_blog_advanced_data();
       $data['categoriesTree']  =   $this->product->get_categories(0, 'blog_cat');
@@ -796,7 +796,7 @@ class FrontendManagerController extends Controller
     $get_page_by_filter = Post::where(['post_slug' => $params, 'post_status' => 1, 'post_type' => 'page'])->first();
 
     if (!empty($get_page_by_filter)) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['page_data'] = $get_page_by_filter;
 
       return view('pages.frontend.frontend-pages.custom-single-page', $data);
@@ -816,7 +816,7 @@ class FrontendManagerController extends Controller
   {
     $data = array();
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['vendors_list'] = $this->vendors->getAllVendors(false, null, 1);
 
     return view('pages.frontend.vendors.vendors-list', $data);
@@ -839,7 +839,7 @@ class FrontendManagerController extends Controller
       return view('errors.vendor_not_active');
     }
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['vendor_settings'] = null;
     $data['vendor_selected_cats_id'] = array();
 
@@ -920,7 +920,7 @@ class FrontendManagerController extends Controller
       return view('errors.vendor_not_active');
     }
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['vendor_settings'] = null;
     $data['vendor_selected_cats_id'] = array();
 
@@ -1073,7 +1073,7 @@ class FrontendManagerController extends Controller
       return view('errors.vendor_not_active');
     }
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['vendor_settings'] = null;
     $data['vendor_selected_cats_id'] = array();
 
@@ -1141,7 +1141,7 @@ class FrontendManagerController extends Controller
       return view('errors.vendor_not_active');
     }
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['vendor_settings'] = null;
     $data['vendor_selected_cats_id'] = array();
 
@@ -1289,7 +1289,7 @@ class FrontendManagerController extends Controller
   {
     $data = array();
 
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
     $data['compare_product_data']  = array();
     $data['compare_product_label'] = null;
 
@@ -1326,7 +1326,7 @@ class FrontendManagerController extends Controller
     $get_tag_by_slug = get_products_by_product_tag_slug($params);
 
     if (count($get_tag_by_slug) > 0) {
-      $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+      $data = $this->classCommonFunction->frontendData();
       $data['tag_single_details']  =  $get_tag_by_slug;
       $data['popular_tags_list']   =  $this->product->getTermData('product_tag', false, null, 1);
 
@@ -1355,7 +1355,7 @@ class FrontendManagerController extends Controller
       if ($get_product_type == 'customizable_product') {
         $get_current_user_data  =  get_current_frontend_user_info();
 
-        $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+        $data = $this->classCommonFunction->frontendData();
         $data['single_product_details']  =  $this->product->getProductDataById($product_id);
 
         if (is_frontend_user_logged_in() && isset($get_current_user_data['user_role_slug']) && $data['single_product_details']['_is_role_based_pricing_enable'] == 'yes') {
@@ -1521,7 +1521,7 @@ class FrontendManagerController extends Controller
   {
     $data = array();
     $get_order_data = $this->classCommonFunction->get_order_details_by_order_id(array('order_id' => $params, 'order_process_id' => $params2));
-    $data = $this->classCommonFunction->get_dynamic_frontend_content_data();
+    $data = $this->classCommonFunction->frontendData();
 
     if (count($get_order_data) > 0) {
       $get_order_data['settings'] = $this->option->getSettingsData();

@@ -1295,7 +1295,7 @@ class GetFunction
         $price_range = price_html($_this->product_price_by_filter(min($result)),  $currency);
       } else {
         $price_range = price_html($_this->product_price_by_filter(min($result)), $currency) . ' - ' . price_html($_this->product_price_by_filter(max($result)), $currency);
-      }
+      } 
     } else {
       $price_range = price_html($_this->product_price_by_filter(0), $currency);
     }

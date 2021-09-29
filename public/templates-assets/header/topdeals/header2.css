@@ -14,7 +14,7 @@
 header{
   position: fixed;
   width: 100%;
-  z-index: 99;
+  z-index: 9999999999;
   top:0px;
 }
  .no-margin {
@@ -579,7 +579,7 @@ header{
   .typeheader-2 .header-cart-phone {
     text-align: right;
     margin-top: 8px; 
-      padding:0px;
+      padding-left:10px;
   }
   .typeheader-2 .header-cart-phone .bt-head {
     text-align: left;
