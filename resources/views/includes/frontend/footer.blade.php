@@ -62,7 +62,7 @@
 
   var verticalMenu = document.querySelectorAll('.item-vertical');
   var  catItems = document.querySelectorAll(".cat-items");
-  var catList = document.querySelectorAll("cat-list");
+  var catList = document.querySelectorAll(".cat-list:not(.items-loaded)");
   var verticalChildren = <?=json_encode(getTopCatChildren($top_cat))?>;
   var catProducts = <?=isset($catProducts)?json_encode($catProducts):json_encode('[]');?>;
   var currency = `<?=isset($catProducts)?get_currency_symbol_by_code($selected_currency):''?>`;
@@ -93,13 +93,17 @@
                                                 </div>`;
     });
     ele.innerHTML = html;
+    ele.classList.add("items-loaded");
   }
 
   function setCatProducts(){
     catList.forEach(ele=>{
-      var prods = catProducts.filter(prod=>prod.term_id == ele.getAttribute('data-id'));
-      console.log(prods);
-      showProducts(ele,prods);
+      var windowHeight = window.innerHeight;
+        var elePos = ele.getBoundingClientRect().top;
+        if( (!ele.classList.contains('items-loaded')) && elePos > 0 && elePos < windowHeight){
+            var prods = catProducts.filter(prod=>prod.term_id == ele.getAttribute('data-id'));
+            showProducts(ele,prods);
+        }
     });
   }
 
@@ -227,6 +231,7 @@
       setMenu()
       loadImages();
       window.onscroll = ()=>{
+        setCatProducts();
         loadImages();
       }
 
