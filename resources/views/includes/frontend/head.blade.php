@@ -64,14 +64,20 @@
 <!--<link href="{{ URL::asset('public/frontend/css/quickview/quickview.css') }}" rel="stylesheet">-->
 <!-- Google web fonts
  ============================================ -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700|Abel' rel='stylesheet' type='text/css'>
 <<style>
 * {
-        font-family: 'Open Sans', sans-serif !important;
+        font-family: 'Abel', sans-serif !important;
     }
+
 
 .fa{
   font-family:FontAwesome !important;
+}
+
+.img-cover .img-thumbnail {
+    min-height: 190px;
+    margin-top: 0;
 }
 </style>
 

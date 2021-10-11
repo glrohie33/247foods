@@ -117,6 +117,40 @@
                         </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 module so-listing-tabs-ltr default-nav clearfix img-float label-1 home-lt1">
+                        <div class="head-title font-ct">
+                                <h2 class=modtitle>Best Selling</h2>
+                                <div class="view-more">
+                                        <a class="label" href="{{ route('shop-page', 'features') }}">see more</a>
+                                </div>
+                        </div>
+                        <div class="product-list">
+                                @if(count($advancedData['features_items']) > 0) @foreach($advancedData['best_selling'] as $key => $latest_product)
+                                <div class="item-inner product-layout transition product-grid col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class=product-item-container>
+                                <div class=left-block>
+                                <div class="image product-image-container">
+                                <a class=lt-image href="{{ route('details-page', $latest_product->slug) }}" target=_self>
+                                <img class="lazy-load-image" src="<?=img_loading()?>" data-src="{{ get_image_url( $latest_product->image_url ) }}" alt="$latest_product->image_alt }}">
+                                </a>
+                                </div>
+                                </div>
+                                <div class=right-block>
+                                <h4 class="title"><a href="{{ route('details-page', $latest_product->slug) }}" target=_self>{!! $latest_product->title !!}</a></h4>
+                                <div class="total-price clearfix">
+                                <div class="price price-left">
+                                <span class=price-new>{!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->price)), $selected_currency) !!}</span>
+                                @if($latest_product->sale_price > 0 && $latest_product->sale_price != '')
+                                <span class=price-old>{!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->regular_price)), $selected_currency) !!}</span>
+                                @endif
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div> 
+                                @endforeach @endif
+                        </div>
+        </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 module so-listing-tabs-ltr default-nav clearfix img-float label-1 home-lt1">
                                 <div class="head-title font-ct">
                                         <h2 class=modtitle>Featured Product</h2>
                                         <div class="view-more">
@@ -183,41 +217,6 @@
                         <div>
                         <a title="Static Image" href="<?=($home_banner[7]['url'])? $home_banner[7]['url'] : "" ;?>"><img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[7]['image'])? URL::asset($home_banner[7]['image']) : "" ;?>" alt="Static Image"></a>
                         </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 module so-listing-tabs-ltr default-nav clearfix img-float label-1 home-lt1">
-                                        <div class="head-title font-ct">
-                                                <h2 class=modtitle>Best Selling</h2>
-                                                <div class="view-more">
-                                                        <a class="label" href="{{ route('shop-page', 'features') }}">see more</a>
-                                                </div>
-                                        </div>
-                                        <div class="product-list">
-                                                @if(count($advancedData['features_items']) > 0) @foreach($advancedData['best_selling'] as $key => $latest_product)
-                                                <div class="item-inner product-layout transition product-grid col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                                <div class=product-item-container>
-                                                <div class=left-block>
-                                                <div class="image product-image-container">
-                                                <a class=lt-image href="{{ route('details-page', $latest_product->slug) }}" target=_self>
-                                                <img class="lazy-load-image" src="<?=img_loading()?>" data-src="{{ get_image_url( $latest_product->image_url ) }}" alt="$latest_product->image_alt }}">
-                                                </a>
-                                                </div>
-                                                </div>
-                                                <div class=right-block>
-                                                <h4 class="title"><a href="{{ route('details-page', $latest_product->slug) }}" target=_self>{!! $latest_product->title !!}</a></h4>
-                                                <div class="total-price clearfix">
-                                                <div class="price price-left">
-                                                <span class=price-new>{!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->price)), $selected_currency) !!}</span>
-                                                @if($latest_product->sale_price > 0 && $latest_product->sale_price != '')
-                                                <span class=price-old>{!! price_html( get_product_price_html_by_filter(get_role_based_price_by_product_id($latest_product->id, $latest_product->regular_price)), $selected_currency) !!}</span>
-                                                @endif
-                                                </div>
-                                                </div>
-                                                </div>
-                                                </div>
-                                                </div> 
-                                                @endforeach @endif
-                                        </div>
                         </div>
         </div>
 </div>

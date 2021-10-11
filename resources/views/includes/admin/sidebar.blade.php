@@ -784,6 +784,12 @@
               @else
                 <li><a href="{{ route('admin.menu_layout_settings_content') }}"><i class="fa fa-bars"></i> {!! trans('admin.menu_label') !!}</a></li>
               @endif
+
+              @if(Request::is('admin/settings/category'))
+                <li class="active"><a href="{{ route('admin.menu_layout_settings_category') }}"><i class="fa fa-bars"></i>Top Categories</a></li>
+              @else
+                <li><a href="{{ route('admin.menu_layout_settings_category') }}"><i class="fa fa-bars"></i> Top Categories</a></li>
+              @endif
               
               @if(Request::is('admin/settings/emails') || Request::is('admin/settings/emails/details/*'))
                 <li class="active"><a href="{{ route('admin.emails_settings_content') }}"><i class="fa fa-envelope"></i> {!! trans('admin.emails_label') !!}</a></li>
@@ -808,6 +814,7 @@
               <li><a href="{{ route('admin.languages_settings_content') }}"><i class="fa fa-flag-o"></i> {!! trans('admin.languages') !!}</a></li>
               <li><a href="{{ route('admin.frontend_layout_settings_content') }}"><i class="fa fa-paint-brush"></i> {!! trans('admin.frontend_layout') !!}</a></li>
               <li><a href="{{ route('admin.menu_layout_settings_content') }}"><i class="fa fa-bars"></i> {!! trans('admin.menu_label') !!}</a></li>
+              <li><a href="{{ route('admin.menu_layout_settings_category') }}"><i class="fa fa-bars"></i> Set Top Category</a></li>
               <li><a href="{{ route('admin.emails_settings_content') }}"><i class="fa fa-envelope"></i> {!! trans('admin.emails_label') !!}</a></li>
               <li><a href="{{ route('admin.custom_currency_settings_list_content') }}"><i class="fa fa-dollar"></i> {!! trans('admin.custom_currency_list_label') !!}</a></li>
             </ul>
