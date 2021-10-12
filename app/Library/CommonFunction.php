@@ -964,13 +964,13 @@ class CommonFunction
       }
     }
 
-    $new_vendor_id = get_author_id_by_product_id($product_id);
-    if (!is_null($cart_vendor_id) && !is_null($new_vendor_id)) {
-      if ($cart_vendor_id !== $new_vendor_id) {
-        echo 'vendor_not_same';
-        die();
-      }
-    }
+    // $new_vendor_id = get_author_id_by_product_id($product_id);
+    // if (!is_null($cart_vendor_id) && !is_null($new_vendor_id)) {
+    //   if ($cart_vendor_id !== $new_vendor_id) {
+    //     echo 'vendor_not_same';
+    //     die();
+    //   }
+    // }
     //check this product vendor already in cart end
 
     $_this = new self;

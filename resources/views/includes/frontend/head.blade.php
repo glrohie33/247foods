@@ -75,10 +75,7 @@
   font-family:FontAwesome !important;
 }
 
-.img-cover .img-thumbnail {
-    min-height: 190px;
-    margin-top: 0;
-}
+
 </style>
 
         <script type='application/ld+json'> 

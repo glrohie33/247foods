@@ -58,22 +58,22 @@
 <div class="row row_ci4f banner-row">
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[0]['url'])? $home_banner[0]['url'] : "" ;?>">
-<img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[0]['image'])? URL::asset($home_banner[0]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image img-thumbnail" src="<?=img_loading()?>" data-src="<?=($home_banner[0]['image'])? URL::asset($home_banner[0]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[1]['url'])? $home_banner[1]['url'] : "" ;?>">
-<img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[1]['image'])? URL::asset($home_banner[1]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image img-thumbnail" src="<?=img_loading()?>" data-src="<?=($home_banner[1]['image'])? URL::asset($home_banner[1]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[2]['url'])? $home_banner[2]['url'] : "" ;?>">
-<img class="lazy-load-image" src="<?=img_loading()?>" dat-src="<?=($home_banner[2]['image'])? URL::asset($home_banner[2]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image  img-thumbnail" src="<?=img_loading()?>" dat-src="<?=($home_banner[2]['image'])? URL::asset($home_banner[2]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[3]['url'])? $home_banner[3]['url'] : "" ;?>">
-<img class="lazy-load-image" src="<?=img_loading()?>" data-src="<?=($home_banner[3]['image'])? URL::asset($home_banner[3]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image  img-thumbnail" src="<?=img_loading()?>" data-src="<?=($home_banner[3]['image'])? URL::asset($home_banner[3]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 </div>
@@ -149,7 +149,7 @@
                                 </div> 
                                 @endforeach @endif
                         </div>
-        </div>
+                </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 module so-listing-tabs-ltr default-nav clearfix img-float label-1 home-lt1">
                                 <div class="head-title font-ct">
                                         <h2 class=modtitle>Featured Product</h2>
