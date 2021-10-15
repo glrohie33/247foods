@@ -68,7 +68,7 @@
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
 <a href="<?=($home_banner[2]['url'])? $home_banner[2]['url'] : "" ;?>">
-<img class="lazy-load-image  img-thumbnail" src="<?=img_loading()?>" dat-src="<?=($home_banner[2]['image'])? URL::asset($home_banner[2]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
+<img class="lazy-load-image  img-thumbnail" src="<?=img_loading()?>" data-src="<?=($home_banner[2]['image'])? URL::asset($home_banner[2]['image']) : "" ;?>" class=img-thumbnail alt="" srcset="">
 </a>
 </div>
 <div class="col-md-6 col-sm-6 col-xs-6 img-cover">
