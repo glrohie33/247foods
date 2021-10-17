@@ -58,6 +58,8 @@
           // Do nothing if the browser doesn't support this API.
         }
   </script>
+
+
   <script>
 
   var verticalMenu = document.querySelectorAll('.item-vertical');
@@ -256,10 +258,16 @@ function currencyNumber(x) {
         $(".sidebar-overlay").removeClass("show"),
         $(".sidebar-offcanvas").removeClass("active")
     })
-})
-  </script>
+});
+</script>
 
-
+<?php
+  if(isset($asset_page) && !empty($asset_page)){
+?>
+    @include("includes.frontend.".$asset_page);
+<?php 
+}
+?>
 
 
 </footer>

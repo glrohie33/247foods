@@ -49,8 +49,6 @@ class RegisterController extends Controller
     $this->classGetFunction = new GetFunction();
     $this->option = new OptionController();
     $this->env = App::environment();
-    
-    
   }
 
   /**
@@ -436,7 +434,7 @@ class RegisterController extends Controller
       }
     }
   }
-  
+
   function userVerifyAccount($code)
   {
     if (isset($code) && !empty($code)) {
@@ -450,7 +448,7 @@ class RegisterController extends Controller
       return redirect()->route('user-login-page');
     }
   }
-  
+
   /**
    * 
    * User registration
@@ -467,8 +465,7 @@ class RegisterController extends Controller
         'user_reg_display_name'          => 'required',
         'reg_email_id'                   => 'required|email|unique:users,email',
         'reg_password'                   => 'required|min:5|confirmed',
-        'reg_password_confirmation'      => 'required|min:5',
-        'reg_secret_key'                 => 'required'
+        'reg_password_confirmation'      => 'required|min:5'
       ];
 
       $messages = [
@@ -503,7 +500,7 @@ class RegisterController extends Controller
           $email_options = get_emails_option_data();
 
           $get_role = Role::where(['slug' => $settingsData['_settings_data']['general_settings']['general_options']['default_role_slug_for_site']])->first();
-            
+
           if (!empty($get_role->id)) {
             $User->display_name       =    Request::Input('user_reg_display_name');
             $User->email              =    Request::Input('reg_email_id');
@@ -514,18 +511,17 @@ class RegisterController extends Controller
             if ($ref != null) {
               $User->referee = base64_decode($ref);
             }
-    
-    $save= true;
-    
+
+            $save = true;
+
             if ($User->save()) {
               $Roleuser->user_id    =    $User->id;
               $Roleuser->role_id    =    $get_role->id;
 
               if ($Roleuser->save()) {
                 if ($email_options['new_customer_account']['enable_disable'] == true && $this->env === 'production') {
-                    
-                  $this->classGetFunction->sendCustomMail(array('source' => 'new_customer_account', 'email' => Request::Input('reg_email_id'),'unique_code'=>base64_encode($User->id)));
-                  
+
+                  $this->classGetFunction->sendCustomMail(array('source' => 'new_customer_account', 'email' => Request::Input('reg_email_id'), 'unique_code' => base64_encode($User->id)));
                 }
                 Session::flash('success-message', Lang::get('Registration is successful'));
                 return redirect()->back();
@@ -568,9 +564,7 @@ class RegisterController extends Controller
         'vendor_reg_city'                   => 'required',
         'vendor_reg_state'                  => 'required',
         'vendor_reg_country'                => 'required',
-        'vendor_reg_zip_code'               => 'required',
         'vendor_reg_phone_number'           => 'required',
-        'vendor_reg_secret_key'             => 'required',
         't_and_c'                           => 'required',
       ];
 
@@ -622,7 +616,7 @@ class RegisterController extends Controller
           $User->password = bcrypt(trim(Request::Input('vendor_reg_password')));
           $User->user_photo_url = '';
           $User->user_status = 0;
-          $User->secret_key = bcrypt(trim(Request::Input('vendor_reg_secret_key')));
+          $User->secret_key = bcrypt("");
 
           if ($User->save()) {
             $Roleuser->user_id = $User->id;

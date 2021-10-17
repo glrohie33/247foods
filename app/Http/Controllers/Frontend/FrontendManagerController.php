@@ -665,7 +665,7 @@ class FrontendManagerController extends Controller
         $user_account_parse_data = $user_account_parse_data;
       }
     }
-
+    $data['asset_page'] = "checkoutAssets";
     $data['is_user_login'] = $is_user_login;
     $data['login_user_account_data'] = $user_account_parse_data;
     $data['_settings_data']   = $this->option->getSettingsData();

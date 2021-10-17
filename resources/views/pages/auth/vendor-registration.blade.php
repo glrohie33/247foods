@@ -4,8 +4,8 @@
 @section('content')
 
 <div id="vendor_registration" class="container custom-extra-top-style">
-  <div class="row justify-content-center">
-    <div class="col-xs-12 col-sm-8 col-md-6 text-center">
+  <div class="row d-flex flex-center justify-content-center" style="display:flex; justify-content:center;">
+    <div class="col-xs-12 col-sm-8 col-md-6 text-center" style="padding:20px 15px; background:#fff; border-radius:3px">
       @include('pages-message.notify-msg-error')
       @include('pages-message.form-submit')
 						@include('pages-message.notify-msg-success')
@@ -97,10 +97,10 @@
           <input type="number" placeholder="{{ ucfirst(trans('frontend.phone')) }}" class="form-control" id="vendor_reg_phone_number" name="vendor_reg_phone_number" value="{{ old('vendor_reg_phone_number') }}" min="0">
         </div>
 								
-        <div class="form-group has-feedback">
+        {{-- <div class="form-group has-feedback" >
           <input type="text" placeholder="{{ ucfirst(trans('frontend.secret_key')) }}" class="form-control" id="vendor_reg_secret_key" name="vendor_reg_secret_key">
           <span class="fa fa-lock form-control-feedback"></span>
-        </div>
+        </div> --}}
         
         @if(!empty($is_enable_recaptcha) && $is_enable_recaptcha == true)
         <div class="form-group">
