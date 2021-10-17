@@ -5,95 +5,13 @@
 <div class="container product-details " id=shop>
 	
 		<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col_vnxd  menu-left">
-                        <div class="row row_f8gy  ">
-                            <div
-                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_gafz col-style megamenu-style-dev megamenu-dev">
-                                <div class="responsive">
-                                    <div class="so-vertical-menu no-gutter">
-                                        <nav class="navbar-default">
-                                            <div class=" container-megamenu  container   vertical  ">
-                                                
-                                                <div class="navbar-header">
-                                                    <span class="title-navbar hidden-lg hidden-md"> All
-                                                        Categories </span>
-                                                    <button type="button" id="show-verticalmenu"
-                                                        data-toggle="collapse" class="navbar-toggle">
-                                                        <span class="icon-bar"></span>
-                                                        <span class="icon-bar"></span>
-                                                        <span class="icon-bar"></span>
-                                                    </button>
-                                                </div>
-                                                <div class="vertical-wrapper" style="position:static;">
-                                                    <span id="remove-verticalmenu" class="fa fa-times"></span>
-                                                    <div class="megamenu-pattern">
-                                                        <div class="container">
-                                                            <ul class="megamenu" data-transition="slide"
-                                                                data-animationtime="300">
-                                                               
-                                                        
-                                                        @if(is_array($vertical_menu) && count($vertical_menu)>0)
-                                                        @foreach($vertical_menu as $menu)
-                                                            <li class="item-vertical  css-menu with-sub-menu hover">
-                                                                <p class="close-menu"></p>
-                                                                <a href="{{ route('categories-page', $menu['slug']) }}" class="clearfix">
-                                                                    <span>
-                                                                        <strong>
-                                                                            {{ $menu['name'] }}
-                                                                        </strong>
-                                                                    </span>
-                                                                    
-                                                                </a>
-                                                                @if(is_array($menu['children']) && count($menu['children']) > 0 )
-                                                                <div class="sub-menu" style="width: 250px;">
-                                                                    <div class="content">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="categories ">
-                                                                                    <div class="row">
-                                                                                        
-                                                                                        <div
-                                                                                            class="col-sm-12 hover-menu">
-                                                                                            <div class="menu">
-                                                                                                <ul>
-                                                                                                    @foreach($menu['children'] as $child)
-                                                                                                        <li>
-                                                                                                            <a href="{{ route('categories-page', $child['slug']) }}"
-                                                                                                                
-                                                                                                                class="main-menu">{{ $child['name'] }}
-                                                                                                            </a>
-                                                                                                            
-                                                                                                        </li>
-                                                                                                    @endforeach
-                                                                                                    
-                                                                                                </ul>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                @endif
-                                                            </li>
-                                                        @endforeach
-                                                        @endif
-                                                        <li class="loadmore"><i
-                                                                class="fa fa-plus-square"></i><span
-                                                                class="more-view"> More Categories</span></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <aside class="col-md-3 col-sm-4 col-xs-12 content-aside left_column sidebar-offcanvas" style="margin-top:15px;">
+                <span id="close-sidebar" class="fa fa-times"></span>
+                <div class="module">
+                        @include('includes.frontend.categories-page')
+                        @yield('categories-page-content')
+                </div> 
+			</aside>
 			<div id="content" class="col-md-9 col-sm-12 col-xs-12">
 				<a href="javascript:void(0)" class="open-sidebar hidden-lg hidden-md"><i class="fa fa-bars"></i>Sidebar</a>
         

@@ -63,14 +63,20 @@
   var verticalMenu = document.querySelectorAll('.item-vertical');
   var  catItems = document.querySelectorAll(".cat-items");
   var catList = document.querySelectorAll(".cat-list:not(.items-loaded)");
-  var verticalChildren = <?=json_encode(getTopCatChildren($top_cat))?>;
+  var verticalChildren = <?= (isset($top_cat))?json_encode(getTopCatChildren($top_cat)):json_encode([]);?>;
   var catProducts = <?=isset($catProducts)?json_encode($catProducts):json_encode('[]');?>;
   var currency = `<?=isset($catProducts)?get_currency_symbol_by_code($selected_currency):''?>`;
   var detailsPage = `<?=route('details-page', "")?>`;
+function currencyNumber(x) {
+			const num = Number(x).toFixed(2);
+			return (
+				currency + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+			);
+		}
   function showProducts(ele,prod){
     var html= "";
     prod.forEach(p=>{
-      var salePrice =(!!p.salePrice)? `<span class=price-old>${currency+p.regular_price}</span>`:'';
+      var salePrice =(!!p.salePrice)? `<span class=price-old>${currencyNumber(p.regular_price)}</span>`:'';
       html+=`<div class="item-inner product-layout transition product-grid col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                                 <div class=product-item-container>
                                                 <div class=left-block>
@@ -84,7 +90,7 @@
                                                 <h4 class="title"><a href="${detailsPage+'/'+p.slug}" target=_self>${p.title}</a></h4>
                                                 <div class="total-price clearfix">
                                                 <div class="price price-left">
-                                                <span class=price-new>${currency+p.price}</span>
+                                                <span class=price-new>${currencyNumber(p.price)}</span>
                                                 ${salePrice}
                                                 </div>
                                                 </div>
